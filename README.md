@@ -29,6 +29,33 @@ The project demonstrates the integration of a React frontend with a REST-style E
 | Authentication | JSON Web Tokens (JWT), bcrypt |
 | Version control | Git, GitHub |
 
+## System Architecture
+
+```mermaid
+flowchart TB
+    U[User / Administrator]
+    subgraph FE[Frontend — React]
+        UI[Pages and dashboard components]
+        State[Redux Toolkit state]
+        Http[Axios HTTP client]
+        UI --> State
+        UI --> Http
+    end
+    subgraph BE[Backend — Node.js / Express]
+        API[REST-style API routes]
+        Auth[JWT authentication and bcrypt]
+        ORM[Sequelize models]
+        API --> Auth
+        API --> ORM
+    end
+    DB[(PostgreSQL database)]
+    U --> UI
+    Http -->|HTTP requests / JSON responses| API
+    ORM <-->|SQL queries| DB
+```
+
+The React application provides the user interface and uses Axios to communicate with the Express backend. The backend handles API requests and accesses PostgreSQL through Sequelize. Authentication-related code uses JWT and bcrypt. The diagram describes the intended code architecture, not a verified production deployment.
+
 ## Project Structure
 
 ```text
@@ -110,7 +137,7 @@ The frontend's Axios configuration currently points to `http://127.0.0.1:3006`.
 
 ## Screenshots
 
-Screenshots of the dashboard, login page and management workflows will be added after local verification. No demo images are included in this repository yet.
+Company screenshots and business data are intentionally omitted from this public portfolio. The architecture diagram above illustrates the technical implementation without exposing internal data.
 
 ## What This Project Demonstrates
 
